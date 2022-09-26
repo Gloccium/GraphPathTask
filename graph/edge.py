@@ -4,7 +4,12 @@ class Edge:
         self.second_vertex = second_vertex
         self.weight = weight
 
-    def get_opposite_vertex(self, vertex):
+    def incident_vertex(self, vertex):
+        # Check whether vertices are incident
+        if not (self.first_vertex == vertex or self.second_vertex == vertex):
+            raise ValueError()
+
+        # Get incident vertex
         if self.first_vertex == vertex:
             return self.second_vertex
         return self.first_vertex
