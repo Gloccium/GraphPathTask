@@ -1,6 +1,7 @@
 class Vertex:
-    def __init__(self):
+    def __init__(self, vertex_number):
         self.edges = []
+        self.vertex_number = vertex_number
 
     @property
     def incident_vertices(self):
