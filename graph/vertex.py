@@ -1,6 +1,3 @@
-from edge import Edge
-
-
 class Vertex:
     def __init__(self):
         self.edges = []
@@ -12,5 +9,3 @@ class Vertex:
     def incident_edges(self):
         for edge in self.edges:
             yield edge
-
-
