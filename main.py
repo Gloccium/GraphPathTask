@@ -2,7 +2,12 @@ from graph.vertex import Vertex
 
 class Graph:
     def __init__(self, vertices):
-        self.vertices = [Vertex[i] for i in range(vertices)]
+        self.vertices = [Vertex(i) for i in range(vertices)]
+
+    def connect_vertices(self, first_vertex_index, second_vertex_index, weight=1):
+        return Vertex.connect(self.vertices[first_vertex_index],
+                              self.vertices[second_vertex_index],
+                              weight, self)
 
     def depth_first_search(self, vertex_index):
         start_vertex = self.vertices[vertex_index]
