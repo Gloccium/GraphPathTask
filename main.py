@@ -1,4 +1,5 @@
 from graph.vertex import Vertex
+from collections import deque
 
 class Graph:
     def __init__(self, vertices):
@@ -18,6 +19,24 @@ class Graph:
         trace[start_vertex.vertex_number] = 0
         while len(planned) != 0:
             current = planned.pop()
+            for edge in current.incident_edges():
+                incident_vertex = edge.incident_vertex(current)
+                if incident_vertex not in visited:
+                    trace[incident_vertex.vertex_number] = \
+                        trace[current.vertex_number] + edge.weight
+                    planned.append(incident_vertex)
+                    visited.add(incident_vertex)
+        return trace
+
+    def breadth_first_search(self, vertex_index):
+        start_vertex = self.vertices[vertex_index]
+        visited = set()
+        planned = deque([start_vertex])
+        visited.add(start_vertex)
+        trace = dict()
+        trace[start_vertex.vertex_number] = 0
+        while len(planned) != 0:
+            current = planned.popleft()
             for edge in current.incident_edges():
                 incident_vertex = edge.incident_vertex(current)
                 if incident_vertex not in visited:
