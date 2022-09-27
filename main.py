@@ -10,8 +10,8 @@ class Graph:
                               self.vertices[second_vertex_index],
                               weight, self)
 
-    def depth_first_search(self, vertex_index):
-        start_vertex = self.vertices[vertex_index]
+    def depth_first_search(self, start_vertex_index):
+        start_vertex = self.vertices[start_vertex_index]
         visited = set()
         planned = [start_vertex]
         visited.add(start_vertex)
@@ -28,8 +28,8 @@ class Graph:
                     visited.add(incident_vertex)
         return trace
 
-    def breadth_first_search(self, vertex_index):
-        start_vertex = self.vertices[vertex_index]
+    def breadth_first_search(self, start_vertex_index):
+        start_vertex = self.vertices[start_vertex_index]
         visited = set()
         planned = deque([start_vertex])
         visited.add(start_vertex)
@@ -45,3 +45,30 @@ class Graph:
                     planned.append(incident_vertex)
                     visited.add(incident_vertex)
         return trace
+
+    def dijkstra(self, start_vertex_index):
+        not_visited = self.vertices.copy()
+        track = dict()
+        track[self.vertices[start_vertex_index]] = 0
+        while True:
+            to_open = None
+            best_characteristic = float('inf')
+            for e in not_visited:
+                if e in track and track[e] < best_characteristic:
+                    best_characteristic = track[e]
+                    to_open = e
+            if to_open is None:
+                result = dict()
+                for x in track:
+                    result[x.vertex_number] = track[x]
+                return result
+
+            for e in [x for x in to_open.incident_edges()
+                      if x.first_vertex == to_open]:
+                current_characteristic = track[to_open] + e.weight
+                next_vertex = e.incident_vertex(to_open)
+                if (next_vertex not in track)\
+                        or track[next_vertex] > current_characteristic:
+                    track[next_vertex] = current_characteristic
+
+            not_visited.remove(to_open)
