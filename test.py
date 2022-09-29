@@ -40,3 +40,11 @@ class Test(unittest.TestCase):
         graph.connect_vertices(3, 4, 2)
         self.assertDictEqual(graph.bellman_ford(1),
                              {0: float('inf'), 1: 0, 2: 0, 3: 1, 4: 3})
+
+    def test_bellman_ford_error_check(self):
+        graph = Graph(3)
+        graph.connect_vertices(1, 2, -1)
+        graph.connect_vertices(2, 1, -1)
+        with self.assertRaises(ValueError):
+            graph.bellman_ford(1)
+            graph.bellman_ford(2)

@@ -2,9 +2,9 @@ from graph.edge import Edge
 
 
 class Vertex:
-    def __init__(self, vertex_number):
+    def __init__(self, vertex_id):
         self.edges = []
-        self.vertex_number = vertex_number
+        self.vertex_id = vertex_id
 
     @property
     def incident_vertices(self):
