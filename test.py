@@ -30,3 +30,13 @@ class Test(unittest.TestCase):
         graph.connect_vertices(3, 4, 4)
         self.assertDictEqual(graph.dijkstra(0),
                              {0: 0, 1: 3, 2: 1, 3: 5, 4: 9})
+
+    def test_bellman_ford(self):
+        graph = Graph(5)
+        graph.connect_vertices(1, 2, 2)
+        graph.connect_vertices(1, 3, 1)
+        graph.connect_vertices(3, 2, -1)
+        graph.connect_vertices(2, 4, 3)
+        graph.connect_vertices(3, 4, 2)
+        self.assertDictEqual(graph.bellman_ford(1),
+                             {0: float('inf'), 1: 0, 2: 0, 3: 1, 4: 3})
