@@ -10,6 +10,14 @@ class Graph:
                               self.vertices[second_vertex_index],
                               weight, self)
 
+    @property
+    def edges(self):
+        list = []
+        for elem in ([vertex.incident_edges() for vertex in self.vertices]):
+            for e in elem:
+                list.append(e)
+        return set(list)
+
     def depth_first_search(self, start_vertex_index):
         start_vertex = self.vertices[start_vertex_index]
         visited = set()
@@ -72,3 +80,24 @@ class Graph:
                     track[next_vertex] = current_characteristic
 
             not_visited.remove(to_open)
+
+    def bellman_ford(self, start_vertex):
+        distance = dict()
+        for vertex in self.vertices:
+            distance[vertex.vertex_number] = float("Inf")
+        distance[start_vertex] = 0
+        for i in range(len(self.vertices) - 1):
+            for edge in self.edges:
+                if distance[edge.first_vertex.vertex_number] != float("Inf")\
+                        and distance[edge.first_vertex.vertex_number]\
+                        + edge.weight\
+                        < distance[edge.second_vertex.vertex_number]:
+                    distance[edge.second_vertex.vertex_number]\
+                        = distance[edge.first_vertex.vertex_number]\
+                        + edge.weight
+        for edge in self.edges:
+            if distance[edge.first_vertex.vertex_number] != float("Inf")\
+                    and distance[edge.first_vertex.vertex_number]\
+                    + edge.weight < distance[edge.second_vertex.vertex_number]:
+                raise ValueError("Found negative weight cycle")
+        return distance
