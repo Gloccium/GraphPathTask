@@ -48,3 +48,7 @@ class Test(unittest.TestCase):
         with self.assertRaises(ValueError):
             graph.bellman_ford(1)
             graph.bellman_ford(2)
+
+
+if __name__ == '__main__':
+    unittest.main()
