@@ -102,4 +102,3 @@ class Graph:
                     + edge.weight < distance[edge.second_vertex.vertex_id]:
                 raise ValueError("Found negative weight cycle")
         return distance
-
