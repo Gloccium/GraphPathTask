@@ -41,7 +41,7 @@ class Test(unittest.TestCase):
         self.assertDictEqual(graph.bellman_ford(1),
                              {0: float('inf'), 1: 0, 2: 0, 3: 1, 4: 3})
 
-    def test_bellman_ford_error_check(self):
+    def test_bellman_ford_negative_weight_cycle(self):
         graph = Graph(3)
         graph.connect_vertices(1, 2, -1)
         graph.connect_vertices(2, 1, -1)
