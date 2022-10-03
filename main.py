@@ -86,19 +86,19 @@ class Graph:
     def bellman_ford(self, start_vertex):
         distance = dict()
         for vertex in self.vertices:
-            distance[vertex.vertex_id] = float("Inf")
+            distance[vertex.vertex_id] = float('inf')
         distance[start_vertex] = 0
         for i in range(len(self.vertices) - 1):
             for edge in self.edges:
-                if distance[edge.first_vertex.vertex_id] != float("Inf") \
+                if distance[edge.first_vertex.vertex_id] != float('inf') \
                         and distance[edge.first_vertex.vertex_id] \
                         + edge.weight \
                         < distance[edge.second_vertex.vertex_id]:
                     distance[edge.second_vertex.vertex_id] \
                         = distance[edge.first_vertex.vertex_id] + edge.weight
         for edge in self.edges:
-            if distance[edge.first_vertex.vertex_id] != float("Inf") \
+            if distance[edge.first_vertex.vertex_id] != float('inf') \
                     and distance[edge.first_vertex.vertex_id] \
                     + edge.weight < distance[edge.second_vertex.vertex_id]:
-                raise ValueError("Found negative weight cycle")
+                raise ValueError('Found negative weight cycle')
         return distance

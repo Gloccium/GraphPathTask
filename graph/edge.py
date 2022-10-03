@@ -7,7 +7,7 @@ class Edge:
     def incident_vertex(self, vertex):
         # Check whether vertices are incident
         if not (self.first_vertex == vertex or self.second_vertex == vertex):
-            raise ValueError("Vertices are not incident")
+            raise ValueError('Vertices are not incident')
 
         # Get incident vertex
         if self.first_vertex == vertex:
