@@ -27,7 +27,7 @@ class Graph:
         visited.add(start_vertex)
         trace = dict()
         trace[start_vertex.vertex_id] = 0
-        while len(planned) != 0:
+        while planned:
             current = planned.pop()
             for edge in current.incident_edges():
                 incident_vertex = edge.incident_vertex(current)
@@ -45,7 +45,7 @@ class Graph:
         visited.add(start_vertex)
         trace = dict()
         trace[start_vertex.vertex_id] = 0
-        while len(planned) != 0:
+        while planned:
             current = planned.popleft()
             for edge in current.incident_edges():
                 incident_vertex = edge.incident_vertex(current)
