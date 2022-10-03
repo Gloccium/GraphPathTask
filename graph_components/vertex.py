@@ -1,4 +1,4 @@
-from graph.edge import Edge
+from graph_components.edge import Edge
 
 
 class Vertex:

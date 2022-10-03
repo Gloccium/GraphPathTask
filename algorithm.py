@@ -1,24 +1,10 @@
-from graph.vertex import Vertex
+from graph_components.graph import Graph
 from collections import deque
 
 
-class Graph:
+class Algorithm(Graph):
     def __init__(self, vertices):
-        self.vertices = [Vertex(i) for i in range(vertices)]
-
-    def connect_vertices(self, first_vertex_index, second_vertex_index,
-                         weight=1):
-        return Vertex.connect(self.vertices[first_vertex_index],
-                              self.vertices[second_vertex_index],
-                              weight, self)
-
-    @property
-    def edges(self):
-        edges = []
-        for elem in ([vertex.incident_edges() for vertex in self.vertices]):
-            for e in elem:
-                edges.append(e)
-        return set(edges)
+        super().__init__(vertices)
 
     def depth_first_search(self, start_vertex_index):
         start_vertex = self.vertices[start_vertex_index]
