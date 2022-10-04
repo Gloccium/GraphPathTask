@@ -88,3 +88,23 @@ class Algorithm(Graph):
                     + edge.weight < distance[edge.second_vertex.vertex_id]:
                 raise ValueError('Found negative weight cycle')
         return distance
+
+    def floyd_warshall(self):
+        distances = [[float('inf') for _ in range(len(self.vertices))] for _ in
+                     range(len(self.vertices))]
+        for edge in self.edges:
+            distances[edge.first_vertex.vertex_id][
+                edge.second_vertex.vertex_id] = edge.weight
+            distances[edge.first_vertex.vertex_id][
+                edge.first_vertex.vertex_id] = 0
+            distances[edge.second_vertex.vertex_id][
+                edge.second_vertex.vertex_id] = 0
+        for k in range(len(self.vertices)):
+            for i in range(len(self.vertices)):
+                for j in range(len(self.vertices)):
+                    if distances[i][j] > distances[i][k] + distances[k][j]:
+                        distances[i][j] = distances[i][k] + distances[k][j]
+        if [distances[i][i] for i in range(len(self.vertices)) if
+                            distances[i][i] < 0]:
+            raise ValueError('Found negative weight cycle')
+        return distances
