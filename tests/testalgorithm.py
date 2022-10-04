@@ -2,7 +2,7 @@ import unittest
 from algorithm import Algorithm
 
 
-class Test(unittest.TestCase):
+class TestAlgorithm(unittest.TestCase):
     def test_depth_first_search(self):
         incident = [[0, 1], [0, 2], [1, 3], [2, 3], [3, 4], [4, 5]]
         graph = Algorithm(vertices=6)
