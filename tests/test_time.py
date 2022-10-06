@@ -3,6 +3,7 @@ import time
 from random import getrandbits, randint
 from algorithm import Algorithm
 
+
 class TestTime(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:

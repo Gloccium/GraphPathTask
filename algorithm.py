@@ -105,6 +105,6 @@ class Algorithm(Graph):
                     if distances[i][j] > distances[i][k] + distances[k][j]:
                         distances[i][j] = distances[i][k] + distances[k][j]
         if [distances[i][i] for i in range(len(self.vertices)) if
-                            distances[i][i] < 0]:
+                distances[i][i] < 0]:
             raise ValueError('Found negative weight cycle')
         return distances
