@@ -5,8 +5,8 @@ from algorithm import Algorithm
 
 class TestTime(unittest.TestCase):
     @classmethod
-    def setup(cls) -> None:
-        cls.graph = cls  .create_random_graph(100)
+    def setUpClass(cls) -> None:
+        cls.graph = cls.create_random_graph(100)
 
     @staticmethod
     def create_random_graph(size):
