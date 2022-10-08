@@ -2,6 +2,7 @@ import unittest
 import time
 from random import getrandbits, randint
 from algorithm import Algorithm
+import tracemalloc
 
 
 class TestTime(unittest.TestCase):
